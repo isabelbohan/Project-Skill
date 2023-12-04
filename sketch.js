@@ -2,33 +2,90 @@
  * 2023-12-5
  */
 
+
+let angleX = 0;
+let angleY = 0;
+let side = 100;
+
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(400, 400, WEBGL);
 }
 
 function draw() {
-  background(220);
+  background(200);
 
-  // Stem
-  fill(34, 139, 34); // Green color
-  rect(195, 200, 10, 100);
+  rotateX(angleX);
+  rotateY(angleY);
 
-  // Flower head
-  fill(255, 165, 0); // Orange color
-  ellipse(200, 150, 60, 60);
+  // Draw the cube
+  drawCube();
 
-  // Petals
-  fill(255, 255, 0); // Yellow color
+  // Increment angles for rotation
+  angleX += 0.01;
+  angleY += 0.01;
+}
 
-  // Draw petals using a loop
-  for (let i = 0; i < 6; i++) {
-    let angle = map(i, 0, 6, 0, TWO_PI); // Distribute petals evenly around the flower
-    let petalX = 200 + 20 * cos(angle);
-    let petalY = 150 + 20 * sin(angle);
-    ellipse(petalX, petalY, 20, 40);
-  }
+function drawCube() {
+  // Draw front face
+  beginShape();
+  fill(255, 0, 0);
+  stroke(0);
+  strokeWeight(2);
+  vertex(-side / 2, -side / 2, side / 2);
+  vertex(side / 2, -side / 2, side / 2);
+  vertex(side / 2, side / 2, side / 2);
+  vertex(-side / 2, side / 2, side / 2);
+  endShape(CLOSE);
 
-  // Flower center
-  fill(255, 0, 0); // Red color
-  ellipse(200, 150, 15, 15);
+  // Draw back face
+  beginShape();
+  fill(0, 0, 255);
+  stroke(0);
+  strokeWeight(2);
+  vertex(-side / 2, -side / 2, -side / 2);
+  vertex(side / 2, -side / 2, -side / 2);
+  vertex(side / 2, side / 2, -side / 2);
+  vertex(-side / 2, side / 2, -side / 2);
+  endShape(CLOSE);
+
+  // Connect front and back faces
+  beginShape();
+  fill(0, 255, 0);
+  stroke(0);
+  strokeWeight(2);
+  vertex(-side / 2, -side / 2, side / 2);
+  vertex(-side / 2, -side / 2, -side / 2);
+  vertex(side / 2, -side / 2, -side / 2);
+  vertex(side / 2, -side / 2, side / 2);
+  endShape(CLOSE);
+
+  beginShape();
+  fill(255, 255, 0);
+  stroke(0);
+  strokeWeight(2);
+  vertex(-side / 2, side / 2, side / 2);
+  vertex(-side / 2, side / 2, -side / 2);
+  vertex(side / 2, side / 2, -side / 2);
+  vertex(side / 2, side / 2, side / 2);
+  endShape(CLOSE);
+
+  beginShape();
+  fill(255, 0, 255);
+  stroke(0);
+  strokeWeight(2);
+  vertex(-side / 2, -side / 2, side / 2);
+  vertex(-side / 2, side / 2, side / 2);
+  vertex(-side / 2, side / 2, -side / 2);
+  vertex(-side / 2, -side / 2, -side / 2);
+  endShape(CLOSE);
+
+  beginShape();
+  fill(0, 255, 255);
+  stroke(0);
+  strokeWeight(2);
+  vertex(side / 2, -side / 2, side / 2);
+  vertex(side / 2, side / 2, side / 2);
+  vertex(side / 2, side / 2, -side / 2);
+  vertex(side / 2, -side / 2, -side / 2);
+  endShape(CLOSE);
 }
