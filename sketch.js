@@ -3,89 +3,33 @@
  */
 
 
-let angleX = 0;
-let angleY = 0;
-let side = 100;
-
 function setup() {
-  createCanvas(400, 400, WEBGL);
+  createCanvas(400, 400);
 }
 
 function draw() {
-  background(200);
+  background(255);
 
-  rotateX(angleX);
-  rotateY(angleY);
+  // Draw tree
+  fill(34, 139, 34); // Green color
+  triangle(200, 100, 100, 300, 300, 300);
 
-  // Draw the cube
-  drawCube();
+  // Draw trunk
+  fill(139, 69, 19); // Brown color
+  rect(175, 300, 50, 100);
 
-  // Increment angles for rotation
-  angleX += 0.01;
-  angleY += 0.01;
+  // Draw ornaments
+  drawOrnament(200, 200);
+  drawOrnament(150, 250);
+  drawOrnament(250, 250);
+  drawOrnament(180, 180);
+  drawOrnament(220, 180);
+  drawOrnament(200, 120);
+
+  
 }
 
-function drawCube() {
-  // Draw front face
-  beginShape();
-  fill(255, 0, 0);
-  stroke(0);
-  strokeWeight(2);
-  vertex(-side / 2, -side / 2, side / 2);
-  vertex(side / 2, -side / 2, side / 2);
-  vertex(side / 2, side / 2, side / 2);
-  vertex(-side / 2, side / 2, side / 2);
-  endShape(CLOSE);
-
-  // Draw back face
-  beginShape();
-  fill(0, 0, 255);
-  stroke(0);
-  strokeWeight(2);
-  vertex(-side / 2, -side / 2, -side / 2);
-  vertex(side / 2, -side / 2, -side / 2);
-  vertex(side / 2, side / 2, -side / 2);
-  vertex(-side / 2, side / 2, -side / 2);
-  endShape(CLOSE);
-
-  // Connect front and back faces
-  beginShape();
-  fill(0, 255, 0);
-  stroke(0);
-  strokeWeight(2);
-  vertex(-side / 2, -side / 2, side / 2);
-  vertex(-side / 2, -side / 2, -side / 2);
-  vertex(side / 2, -side / 2, -side / 2);
-  vertex(side / 2, -side / 2, side / 2);
-  endShape(CLOSE);
-
-  beginShape();
-  fill(255, 255, 0);
-  stroke(0);
-  strokeWeight(2);
-  vertex(-side / 2, side / 2, side / 2);
-  vertex(-side / 2, side / 2, -side / 2);
-  vertex(side / 2, side / 2, -side / 2);
-  vertex(side / 2, side / 2, side / 2);
-  endShape(CLOSE);
-
-  beginShape();
-  fill(255, 0, 255);
-  stroke(0);
-  strokeWeight(2);
-  vertex(-side / 2, -side / 2, side / 2);
-  vertex(-side / 2, side / 2, side / 2);
-  vertex(-side / 2, side / 2, -side / 2);
-  vertex(-side / 2, -side / 2, -side / 2);
-  endShape(CLOSE);
-
-  beginShape();
-  fill(0, 255, 255);
-  stroke(0);
-  strokeWeight(2);
-  vertex(side / 2, -side / 2, side / 2);
-  vertex(side / 2, side / 2, side / 2);
-  vertex(side / 2, side / 2, -side / 2);
-  vertex(side / 2, -side / 2, -side / 2);
-  endShape(CLOSE);
+function drawOrnament(x, y) {
+  fill(random(250), random(250), random(250)); // Random color
+  ellipse(x, y, 10, 10); // Ornament shape
 }
